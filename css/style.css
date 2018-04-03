@@ -1,0 +1,25 @@
+body {
+  background-color: rgb(214, 159, 235);
+  font-family: sans-serif;
+  font-size: 200%;
+}
+
+hr {
+  border-color: black;
+}
+
+ul {
+  list-style: square outside none;
+  line-height: 1.25em;
+  margin: 40px;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+
+li {
+  color: rgb(7, 24, 0);
+}
