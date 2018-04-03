@@ -23,3 +23,8 @@ h1 {
 li {
   color: rgb(7, 24, 0);
 }
+
+.dog {
+  padding-left: 30px;
+  list-style-position: inside;
+}
