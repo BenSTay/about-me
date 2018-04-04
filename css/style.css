@@ -25,6 +25,31 @@ li {
 }
 
 .dog {
-  padding-left: 30px;
   list-style-position: inside;
+}
+
+#h2background {
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 200px;
+  margin-right: 200px;
+  text-align: center;
+  line-height: 3em;
+}
+
+h2 {
+  font-family: fantasy;
+  font-size: 1.25em;
+}
+
+ol {
+  list-style: decimal;
+  margin-top: 20px;
+  margin-left: 60px;
+  line-height: 1.25em;
+}
+
+em {
+  font-style: italic;
 }

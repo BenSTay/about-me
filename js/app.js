@@ -46,7 +46,6 @@ for (var i in questionPrompts) {
         alert('Incorrect!');
       }
     } else { //This runs if the user enters anything other than 'TRUE' or 'FALSE'.
-      
       /*The invalidInput flag is set to true, which will cause the loop to continue.
       The user told that their response wasn't accepted. */
       invalidInput = true;
@@ -65,11 +64,11 @@ var ageGuess;
 or runs out of tries.
 */
 do {
-  
+
   //Asks the user to guess my age, and stores their response in the variable ageGuess.
   ageGuess = parseInt(prompt('How old am I, in years? (' + triesLeft + ' tries left)'));
   console.log('ageGuess = ' + ageGuess);
-  
+
   /*Checks if the user entered a number. If not, the user is told that their input
   wasn't accepted.
   */
