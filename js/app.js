@@ -1,10 +1,11 @@
 'use strict';
 
-//Initializes the score variable
+//Initializes global variables
 var correctCount = 0;
 var invalidInput;
 var questionPrompts = [];
 var questionAnswers = ['TRUE', 'FALSE', 'TRUE', 'TRUE', 'FALSE'];
+var myDogs = ['MOBY', 'COCO', 'CARLY', 'BESSIE', 'BELLA'];
 
 //Fills questionPrompts with five questions.
 questionPrompts.push('I was born in Washington State.');
@@ -39,7 +40,8 @@ function trueOrFalse(questions, answers) {
         invalidInput = false;
 
         /*Lets the user know if their answer was right or not.
-  If the user entered the right answer, their score will increase. */
+        If the user entered the right answer, their score will increase.
+        */
         if (userResponses[i] === answers[i]) {
           alert('Correct!');
           correctCount++;
@@ -48,7 +50,8 @@ function trueOrFalse(questions, answers) {
         }
       } else { //This runs if the user enters anything other than 'TRUE' or 'FALSE'.
         /*The invalidInput flag is set to true, which will cause the loop to continue.
-  The user told that their response wasn't accepted. */
+        The user told that their response wasn't accepted.
+        */
         invalidInput = true;
         alert('Invalid input, try again.');
       }
@@ -56,43 +59,43 @@ function trueOrFalse(questions, answers) {
   }
 }
 
-trueOrFalse(questionPrompts, questionAnswers);
-
-
 //QUESTION 6
-
 function numberGuess(answer, upperBound, lowerBound, userPrompt, tries) {
 
-  var ageGuess;
+  var guess;
 
   /*The following code repeats until the user either correctly answers the question,
-or runs out of tries.
-*/
+  or runs out of tries.
+  */
   do {
 
   //Asks the user to guess my age, and stores their response in the variable ageGuess.
-    ageGuess = parseInt(prompt(userPrompt + ' (' + tries + ' tries left)'));
-    console.log('ageGuess = ' + ageGuess);
+    if (tries > 1){
+      guess = parseInt(prompt(userPrompt + ' (' + tries + ' tries left!)'));
+    } else {
+      guess = parseInt(prompt(userPrompt + ' (' + tries + ' try left!)'));
+    }
+    console.log('ageGuess = ' + guess);
 
     /*Checks if the user entered a number. If not, the user is told that their input
-  wasn't accepted.
-  */
-    if (isNaN(ageGuess)) {
+    wasn't accepted.
+    */
+    if (isNaN(guess)) {
       alert('Invalid input.');
 
     /*Checks if the user entered a negative number or thinks that I'm the oldest
     person who ever lived. If they did, the user is told not to be ridiculous.
     */
-    } else if (ageGuess > upperBound || ageGuess < lowerBound) {
+    } else if (guess > upperBound || guess < lowerBound) {
       alert('Don\'t be ridiculous!');
     } else {
 
     //Checks if the user guessed below my age.
-      if (ageGuess < answer) {
+      if (guess < answer) {
         alert('Too low!');
 
       //Checks if the user guessed above my age.
-      } else if (ageGuess > answer) {
+      } else if (guess > answer) {
         alert('Too high!');
 
       //The user's score increases and the loop ends if the correct age was guessed.
@@ -106,45 +109,46 @@ or runs out of tries.
   } while (tries > 0);
 }
 
-numberGuess(24, 122, 0, 'How old am I in years?', 4);
-
 //QUESTION 7
-
-//Initializes the variables used in the following loop.
-var myDogs = ['MOBY', 'COCO', 'CARLY', 'BESSIE', 'BELLA'];
-
 function wordGuess(answer, acceptedWords, userPrompt, tries) {
 
-  var dogGuess;
+  //Local variables
+  var guess;
+  var answerPos = Math.floor(acceptedWords.length / 2);
 
-  /*The following code repeats until either the user either correctly answers the question, or runs out of tries
-*/
-
-  userPrompt += '\n' + answer + ', ';
-
-  for (var i in acceptedWords){
-    userPrompt += acceptedWords[i];
+  /*Adds the possible answers to the prompt on a new line, with the correct answer
+  inserted halfway through the list.
+  */
+  userPrompt += '\n';
+  for (var i = 0; i < acceptedWords.length; i++){
+    if (i === answerPos){
+      userPrompt += answer.charAt(0) + answer.substring(1).toLowerCase()+ ', ';
+    }
+    userPrompt += acceptedWords[i].charAt(0);
+    userPrompt += acceptedWords[i].substring(1).toLowerCase();
     if (i < acceptedWords.length - 1) {
       userPrompt += ', ';
     }
   }
 
+  /*The following code repeats until either the user either correctly answers the
+  question, or runs out of tries
+  */
   do {
 
   //invalidInput is set to a default value (true).
     invalidInput = true;
 
     /*Asks the user to enter one of the listed names, and stores the response in the
-  variable dogGuess
-  */
+    variable dogGuess
+    */
 
-    dogGuess = prompt(userPrompt).toUpperCase();
-    console.log('dogGuess = ' + dogGuess);
+    guess = prompt(userPrompt).toUpperCase();
+    console.log('dogGuess = ' + guess);
 
     /*Checks if the correct answer was chosen. If so, the score increases and the loop
-  ends.
-  */
-    if (dogGuess === answer) {
+    ends.*/
+    if (guess === answer) {
       alert('Correct!');
       correctCount++;
       break;
@@ -152,16 +156,15 @@ function wordGuess(answer, acceptedWords, userPrompt, tries) {
 
     //Checks the user input against each of the valid answers.
     for (i of acceptedWords){
-      if(dogGuess === i){
+      if(guess === i){
         alert('Incorrect!');
         invalidInput = false;
         break;
       }
     }
 
-    /*If the user didn't enter one of the names given, the user is told that their input
-  wasn't accepted.
-  */
+    /*If the user didn't enter one of the names given, the user is told that their
+    input wasn't accepted.*/
     if (invalidInput) {
       alert('Invalid input');
     }
@@ -170,6 +173,10 @@ function wordGuess(answer, acceptedWords, userPrompt, tries) {
   } while (tries > 0);
 }
 
+//MAIN PROGRAM
+
+trueOrFalse(questionPrompts, questionAnswers);
+numberGuess(24, 122, 0, 'How old am I in years?', 4);
 wordGuess('DUCKY', myDogs, 'Which of the following names does NOT belong to a dog that I\'ve'
 + ' lived with?', 6);
 
