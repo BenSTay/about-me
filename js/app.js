@@ -1,23 +1,5 @@
 'use strict';
 
-//Initializes global variables
-var correctCount = 0;
-var invalidInput;
-var questionPrompts = [];
-var questionAnswers = ['TRUE', 'FALSE', 'TRUE', 'TRUE', 'FALSE'];
-var myDogs = ['MOBY', 'COCO', 'CARLY', 'BESSIE', 'BELLA'];
-
-//Fills questionPrompts with five questions.
-questionPrompts.push('I was born in Washington State.');
-questionPrompts.push('I went to Garfield High School.');
-questionPrompts.push('I worked at a circus.');
-questionPrompts.push('I still regularly buy music on CDs');
-questionPrompts.push('I never coded anything before coming to CodeFellows.');
-
-//Asks the user for their name, and stores their response in the userName variable.
-var userName = prompt('Welcome to the "About Me" guessing game!\nPlease enter your name!');
-
-//QUESTIONS 1-5
 function trueOrFalse(questions, answers) {
 
   // //Initializes the variables used in the following loop.
@@ -59,9 +41,9 @@ function trueOrFalse(questions, answers) {
   }
 }
 
-//QUESTION 6
 function numberGuess(answer, upperBound, lowerBound, userPrompt, tries) {
 
+  //Local variables
   var guess;
 
   /*The following code repeats until the user either correctly answers the question,
@@ -69,7 +51,7 @@ function numberGuess(answer, upperBound, lowerBound, userPrompt, tries) {
   */
   do {
 
-  //Asks the user to guess my age, and stores their response in the variable ageGuess.
+    //Asks the user to guess my age, and stores their response in the variable ageGuess.
     if (tries > 1){
       guess = parseInt(prompt(userPrompt + ' (' + tries + ' tries left!)'));
     } else {
@@ -109,7 +91,6 @@ function numberGuess(answer, upperBound, lowerBound, userPrompt, tries) {
   } while (tries > 0);
 }
 
-//QUESTION 7
 function wordGuess(answer, acceptedWords, userPrompt, tries) {
 
   //Local variables
@@ -175,18 +156,41 @@ function wordGuess(answer, acceptedWords, userPrompt, tries) {
 
 //MAIN PROGRAM
 
+//Initializes global variables
+var correctCount = 0;
+var invalidInput;
+var questionPrompts = [];
+var questionAnswers = ['TRUE', 'FALSE', 'TRUE', 'TRUE', 'FALSE'];
+var myDogs = ['MOBY', 'COCO', 'CARLY', 'BESSIE', 'BELLA'];
+
+//Fills questionPrompts with five questions.
+questionPrompts.push('I was born in Washington State.');
+questionPrompts.push('I went to Garfield High School.');
+questionPrompts.push('I worked at a circus.');
+questionPrompts.push('I still regularly buy music on CDs');
+questionPrompts.push('I never coded anything before coming to CodeFellows.');
+
+//Asks the user for their name, and stores their response in the userName variable.
+var userName = prompt('Welcome to the "About Me" guessing game!\nPlease enter your name!');
+
+//Questions 1-5
 trueOrFalse(questionPrompts, questionAnswers);
+
+//Question 6
 numberGuess(24, 122, 0, 'How old am I in years?', 4);
-wordGuess('DUCKY', myDogs, 'Which of the following names does NOT belong to a dog that I\'ve'
-+ ' lived with?', 6);
 
+//Question 7
+wordGuess('DUCKY', myDogs, 'Which of the following names does NOT belong to a dog that'
++' I\'ve lived with?', 6);
 
-var endMessage = 'Thank you for playing, ' + userName + '! You correctly answered ' + correctCount + ' out of 7 '+ 'questions!';
+//Generates a message that includes the user's name and the user's score.
+var endMessage = 'Thank you for playing, ' + userName + '! You correctly answered ' +
+correctCount + ' out of 7 '+ 'questions!';
 
 if (correctCount >= 6) {
   endMessage += ' Great job!';
 } else if (correctCount <= 3) {
   endMessage += ' Better luck next time!';
 }
-//Displays a message telling the user how many questions they got right.
+//Displays the message
 alert(endMessage);
