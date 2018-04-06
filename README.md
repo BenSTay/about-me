@@ -9,8 +9,7 @@ This is a project to ask a user to guess questions about me.
 
 * **Benjamin Taylor** - *Initial work* - [btaylor93](https://github.com/btaylor93/)
 
-* **Andrew Peacock** - *Contributor*  - [todoville]
-(https://github.com/todoville)
+* **Andrew Peacock** - *Contributor*  - [todoville](https://github.com/todoville)
 
 See also the list of [contributors](https://github.com/btaylor93/about-me/contributors) who participated in this project.
 
